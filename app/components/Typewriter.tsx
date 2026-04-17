@@ -18,7 +18,7 @@ export default function Typewriter({ className = "" }: { className?: string }) {
   const [displayed, setDisplayed] = useState("");
   const [wordIdx, setWordIdx] = useState(0);
   const [phase, setPhase] = useState<"typing" | "pause" | "deleting">("typing");
-  const raf = useRef<ReturnType<typeof setTimeout>>();
+  const raf = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     const word = WORDS[wordIdx];
@@ -44,7 +44,11 @@ export default function Typewriter({ className = "" }: { className?: string }) {
       }
     }
 
-    return () => clearTimeout(raf.current);
+    return () => {
+      if (raf.current) {
+        clearTimeout(raf.current);
+      }
+    };
   }, [displayed, phase, wordIdx]);
 
   return (
