@@ -149,7 +149,6 @@ function ContainerScrollHeader() {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    layoutEffect: false,
     offset: ["start end", "end start"],
   });
 

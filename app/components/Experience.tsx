@@ -17,7 +17,6 @@ export default function Experience() {
 
   const { scrollYProgress } = useScroll({
     target: listRef,
-    layoutEffect: false,
     offset: ["start 80%", "end 20%"],
   });
 
