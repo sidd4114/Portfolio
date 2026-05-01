@@ -149,6 +149,7 @@ function ContainerScrollHeader() {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
+    layoutEffect: false,
     offset: ["start end", "end start"],
   });
 
@@ -162,8 +163,8 @@ function ContainerScrollHeader() {
   return (
     <motion.div
       ref={ref}
-      style={{ scale: scaleSp, opacity: opacitySp, y: ySp }}
-      className="container-scroll-header"
+      style={{ scale: scaleSp, opacity: opacitySp, y: ySp, position: "relative" }}
+      className="container-scroll-header relative"
     >
       <div className="text-center mb-16 lg:mb-24 max-w-4xl mx-auto px-6">
         {/* Small label */}

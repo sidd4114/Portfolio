@@ -19,10 +19,7 @@ export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
   const [ready, setReady] = useState(false);
 
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end start"],
-  });
+  const { scrollYProgress } = useScroll();
   const yContent  = useTransform(scrollYProgress, [0, 1], ["0%", "28%"]);
   const opContent = useTransform(scrollYProgress, [0, 0.65], [1, 0]);
 
@@ -41,7 +38,8 @@ export default function Hero() {
 
   return (
     <section ref={sectionRef} id="hero"
-      className="relative w-full min-h-screen overflow-hidden bg-bg flex flex-col justify-end">
+      className="relative w-full min-h-screen overflow-hidden bg-bg flex flex-col justify-end"
+      style={{ position: "relative" }}>
 
       {/* ── Layers ────────────────────────────────────────── */}
       <AnimatedBeam />

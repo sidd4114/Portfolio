@@ -17,6 +17,7 @@ export default function Experience() {
 
   const { scrollYProgress } = useScroll({
     target: listRef,
+    layoutEffect: false,
     offset: ["start 80%", "end 20%"],
   });
 
@@ -56,7 +57,7 @@ export default function Experience() {
         </motion.div>
 
         {/* Timeline */}
-        <div ref={listRef} className="lg:col-span-8 exp-list relative">
+        <div ref={listRef} className="lg:col-span-8 exp-list relative" style={{ position: "relative" }}>
           {/* Vertical accent line */}
           <motion.div
             className="exp-line absolute top-0 bottom-0 w-px z-0"

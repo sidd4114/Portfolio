@@ -29,6 +29,7 @@ html {
   scroll-behavior: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  position: relative;
 }
 
 body {
@@ -36,6 +37,7 @@ body {
   color: #FFFFFF;
   font-family: var(--font-body);
   overflow-x: hidden;
+  position: relative;
 }
 
 /* ─── Global noise grain ─────────────────────────────────────── */
@@ -450,8 +452,11 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-display); }
 
 /* ─── Container scroll animation ────────────────────────────── */
 .container-scroll-header {
+  position: relative;
   transform-origin: center top;
 }
+.exp-list { position: relative; }
+#hero { position: relative; }
 .project-card-enter {
   transform-style: preserve-3d;
   perspective: 1200px;

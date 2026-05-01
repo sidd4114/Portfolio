@@ -41,10 +41,15 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
   const [canScrollRight, setCanScrollRight] = React.useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const isMobile = () => {
-    return window && window.innerWidth < 768;
-  };
-  const cardWidth = isMobile() ? 320 : 480;
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const update = () => setIsMobile(window.innerWidth < 768);
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
+  const cardWidth = isMobile ? 352 : 448;
   const gap = 16;
   const maxIndex = Math.max(0, items.length - 1);
 
@@ -103,7 +108,7 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
                   },
                 }}
                 key={"card" + index}
-                className="min-w-[20rem] shrink-0 rounded-3xl md:min-w-[30rem]"
+                className="min-w-[22rem] shrink-0 rounded-3xl md:min-w-[28rem]"
               >
                 {item}
               </motion.div>
@@ -218,7 +223,8 @@ export const Card = ({
         whileHover={{ y: -10, scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
         transition={{ type: "spring", stiffness: 240, damping: 18 }}
-        className="relative z-10 flex h-[28rem] w-[20rem] min-w-[20rem] flex-col items-start justify-start overflow-hidden rounded-3xl bg-gray-100 md:h-[46rem] md:w-[30rem] md:min-w-[30rem] dark:bg-neutral-900"
+        className="relative z-10 flex w-[22rem] min-w-[22rem] flex-col items-start justify-start overflow-hidden rounded-3xl bg-gray-100 md:w-[28rem] md:min-w-[28rem] dark:bg-neutral-900"
+        style={{ height: "44rem" }}
       >
         <div className="pointer-events-none absolute inset-x-0 top-0 z-30 h-full bg-gradient-to-b from-black/50 via-transparent to-transparent" />
         <div className="relative z-40 p-8">
