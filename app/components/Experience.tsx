@@ -12,6 +12,8 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function Experience() {
   const sectionRef = useRef<HTMLElement>(null);
+  const listRef = useRef<HTMLDivElement>(null);
+  const lineRef = useRef<HTMLDivElement>(null);
   const inView = useInView(sectionRef, { once: true, margin: "-10%" });
 
   useEffect(() => {
@@ -23,6 +25,19 @@ export default function Experience() {
           scrollTrigger: { trigger: ".exp-list", start: "top 75%" },
         }
       );
+      if (lineRef.current && listRef.current) {
+        gsap.set(lineRef.current, { scaleY: 0, transformOrigin: "top" });
+        gsap.to(lineRef.current, {
+          scaleY: 1,
+          ease: "none",
+          scrollTrigger: {
+            trigger: listRef.current,
+            start: "top 80%",
+            end: "bottom 20%",
+            scrub: true,
+          },
+        });
+      }
     }, sectionRef);
     return () => ctx.revert();
   }, []);
@@ -49,16 +64,18 @@ export default function Experience() {
         </motion.div>
 
         {/* Timeline */}
-        <div className="lg:col-span-8 exp-list relative">
+        <div ref={listRef} className="lg:col-span-8 exp-list relative">
           {/* Vertical accent line */}
-          <motion.div
-            className="absolute left-0 top-0 bottom-0 w-px"
-            style={{ background: "linear-gradient(to bottom, #E02D3C, rgba(224,45,60,0.1), transparent)", transformOrigin: "top" }}
-            initial={{ scaleY: 0 }} animate={inView ? { scaleY: 1 } : {}}
-            transition={{ duration: 1.5, ease: [0.76, 0, 0.24, 1], delay: 0.3 }}
+          <div
+            ref={lineRef}
+            className="exp-line absolute top-0 bottom-0 w-px z-0"
+            style={{
+              left: "0.3125rem",
+              background: "linear-gradient(to bottom, #E02D3C, rgba(224,45,60,0.1), transparent)",
+            }}
           />
 
-          <div className="pl-10 flex flex-col gap-10">
+          <div className="pl-10 flex flex-col gap-10 relative z-10">
             {experiences.map((exp) => (
               <div key={exp.id} className="exp-card relative opacity-0">
                 {/* Dot */}
@@ -79,7 +96,7 @@ export default function Experience() {
                         <span className="text-secondary text-xs font-mono border border-white/10 rounded-full px-3 py-1">
                           {exp.period}
                         </span>
-                        {exp.period === "Ongoing" && (
+                        {exp.period.includes("Ongoing") && (
                           <span className="badge-ongoing">
                             <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
                             Live

@@ -56,6 +56,16 @@ export const experiences = [
   },
   {
     id: "exp-02",
+    role: "Web Developer Intern",
+    company: "Fr. C. Rodrigues Institute of Technology",
+    companyType: "Computer Department",
+    period: "Dec 2025 – Ongoing",
+    description:
+      "Helping the Computer Department maintain the IMS website and revamping it for clearer navigation, updated UI, and faster content updates.",
+    stack: ["HTML", "CSS", "JavaScript", "UI Revamp", "CMS"],
+  },
+  {
+    id: "exp-03",
     role: "Deep Learning Intern",
     company: "Fr. C. Rodrigues Institute of Technology",
     companyType: "Research Lab",

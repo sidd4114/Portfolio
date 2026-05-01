@@ -7,6 +7,9 @@ export default function CustomCursor() {
   const followerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const isCoarsePointer = window.matchMedia("(hover: none), (pointer: coarse)").matches;
+    if (isCoarsePointer) return;
+
     const dot = dotRef.current;
     const follower = followerRef.current;
     if (!dot || !follower) return;

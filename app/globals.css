@@ -23,7 +23,6 @@ body {
   color: #FFFFFF;
   font-family: var(--font-body);
   overflow-x: hidden;
-  cursor: none;
 }
 
 /* ─── Global noise grain ─────────────────────────────────────── */
@@ -57,6 +56,15 @@ body::before {
 .cursor.hover   { width: 18px; height: 18px; }
 .cursor-follower.hover { width: 64px; height: 64px; border-color: rgba(224,45,60,0.7); }
 .cursor.click   { transform: translate(-50%,-50%) scale(0.7); }
+
+@media (hover: none), (pointer: coarse) {
+  body { cursor: auto; }
+  .cursor, .cursor-follower { display: none; }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  body { cursor: none; }
+}
 
 /* ─── Scrollbar ─────────────────────────────────────────────── */
 ::-webkit-scrollbar { width: 3px; }
