@@ -71,9 +71,9 @@ const data = [
     content: <DummyContent text="Secured 3rd position pitching out-of-the-box sustainability solutions and creating a real-world impact plan focusing on green tech." />,
   },
   {
-    category: "Hackathon Track Record",
-    title: "SIH 2024 & SIH 2025",
-    src: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2670&auto=format&fit=crop",
-    content: <DummyContent text="Participated in consecutive editions of Smart India Hackathon (2024/2025), India's largest government-level hackathon for student innovators. Consistently executing and pitching innovative solutions in Sparkathon 2024 & 2025, Innovex E-Summit 2025, and Ideathon 2k25." />,
+    category: "Hackathon",
+    title: "Hackquinox 2.0 — Top 10",
+    src: "/hackquinox2.0.JPG",
+    content: <DummyContent text="Secured a spot in the top 10 teams out of 600+ participants at Hackquinox 2.0." />,
   }
 ];

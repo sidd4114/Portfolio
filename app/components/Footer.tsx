@@ -123,7 +123,7 @@ export default function Footer() {
           <div className="flex flex-col gap-3">
             {[
               ["CGPA", "9.85"],
-              ["Year", "2nd (2023–2027)"],
+              ["Year", "3rd (2023–2027)"],
               ["Rank", "2nd in batch"],
               ["Location", "Navi Mumbai, IN"],
             ].map(([k, v]) => (

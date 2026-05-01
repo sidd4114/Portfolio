@@ -416,7 +416,7 @@ export default function About() {
             <div className="space-y-5 mb-12">
               {[
                 personal.description,
-                "Currently interning at Optiqo (fintech) and running deep learning research on medical imaging — knee MRI and hip X-ray implant templating — at my university lab. Building things that work in the real world, not just in notebooks.",
+                "Running deep learning research on medical imaging — knee MRI and hip X-ray implant templating — at my university lab, along with web development for the Computer Department. Building things that work in the real world, not just in notebooks.",
                 "Outside academia: hackathons, competitive programming, and shipping side projects that scratch real itches.",
               ].map((text, i) => (
                 <motion.p

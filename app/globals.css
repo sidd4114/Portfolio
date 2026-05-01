@@ -462,6 +462,14 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-display); }
   perspective: 1200px;
 }
 
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 /* ─── Neon text ──────────────────────────────────────────────── */
 .neon-text {
   color: var(--accent);
