@@ -9,7 +9,7 @@ import { personal, education } from "@/app/lib/data";
 const stats = [
   { value: "9.85",  label: "CGPA",            suffix: "" },
   { value: "2",     label: "Year Rank",        suffix: "nd" },
-  { value: "3",     label: "Hackathons",       suffix: "+" },
+  { value: "10",     label: "Hackathons",       suffix: "+" },
 ];
 
 const traits = [
@@ -156,7 +156,7 @@ function PhotoCard() {
         animate={{ y: [0, -6, 0] }}
         transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
       >
-        2nd Year Rank
+        3rd Year Rank
       </motion.div>
 
       <motion.div

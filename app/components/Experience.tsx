@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useEffect } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useScroll } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { experiences } from "@/app/lib/data";
@@ -13,8 +13,12 @@ gsap.registerPlugin(ScrollTrigger);
 export default function Experience() {
   const sectionRef = useRef<HTMLElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
-  const lineRef = useRef<HTMLDivElement>(null);
   const inView = useInView(sectionRef, { once: true, margin: "-10%" });
+
+  const { scrollYProgress } = useScroll({
+    target: listRef,
+    offset: ["start 80%", "end 20%"],
+  });
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -25,19 +29,6 @@ export default function Experience() {
           scrollTrigger: { trigger: ".exp-list", start: "top 75%" },
         }
       );
-      if (lineRef.current && listRef.current) {
-        gsap.set(lineRef.current, { scaleY: 0, transformOrigin: "top" });
-        gsap.to(lineRef.current, {
-          scaleY: 1,
-          ease: "none",
-          scrollTrigger: {
-            trigger: listRef.current,
-            start: "top 80%",
-            end: "bottom 20%",
-            scrub: true,
-          },
-        });
-      }
     }, sectionRef);
     return () => ctx.revert();
   }, []);
@@ -67,12 +58,13 @@ export default function Experience() {
         {/* Timeline */}
         <div ref={listRef} className="lg:col-span-8 exp-list relative">
           {/* Vertical accent line */}
-          <div
-            ref={lineRef}
+          <motion.div
             className="exp-line absolute top-0 bottom-0 w-px z-0"
             style={{
               left: "0.3125rem",
               background: "linear-gradient(to bottom, #E02D3C, rgba(224,45,60,0.1), transparent)",
+              scaleY: scrollYProgress,
+              transformOrigin: "top",
             }}
           />
 

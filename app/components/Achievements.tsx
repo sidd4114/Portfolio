@@ -1,74 +1,79 @@
-"use client";
+﻿"use client";
 
-import { useRef, useEffect } from "react";
+import React, { useRef } from "react";
+import { Carousel, Card } from "@/components/ui/apple-cards-carousel";
 import { motion, useInView } from "framer-motion";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { achievements } from "@/app/lib/data";
-import { fadeUpVariant, staggerContainer } from "@/app/lib/animations";
-import SpotlightCard from "@/app/components/SpotlightCard";
-
-gsap.registerPlugin(ScrollTrigger);
 
 export default function Achievements() {
   const sectionRef = useRef<HTMLElement>(null);
   const inView = useInView(sectionRef, { once: true, margin: "-10%" });
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.fromTo(".ach-card",
-        { opacity: 0, y: 50 },
-        {
-          opacity: 1, y: 0, duration: 0.9, stagger: 0.15, ease: "expo.out",
-          scrollTrigger: { trigger: ".ach-grid", start: "top 75%" },
-        }
-      );
-    }, sectionRef);
-    return () => ctx.revert();
-  }, []);
+  const cards = data.map((card, index) => (
+    <Card key={card.src} card={card} index={index} />
+  ));
 
   return (
-    <section ref={sectionRef} id="achievements"
-      className="py-32 lg:py-44 px-6 lg:px-16 max-w-7xl mx-auto">
-      <motion.div className="flex items-center gap-4 mb-16"
-        initial={{ opacity: 0, x: -20 }} animate={inView ? { opacity: 1, x: 0 } : {}} transition={{ duration: 0.6 }}>
-        <div className="w-6 h-px bg-accent" />
-        <span className="section-label">Recognition</span>
-        <span className="section-label text-white/20">— 05</span>
-      </motion.div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 items-start">
-        <motion.div className="lg:col-span-4"
-          variants={staggerContainer} initial="hidden" animate={inView ? "visible" : "hidden"}>
-          <motion.h2 className="text-headline text-white sticky top-28" variants={fadeUpVariant}>
-            Earned<br /><span className="text-secondary">through</span><br />execution.
-          </motion.h2>
+    <section ref={sectionRef} id="achievements" className="py-32 lg:py-44 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 lg:px-16">
+        <motion.div className="flex items-center gap-4 mb-4"
+          initial={{ opacity: 0, x: -20 }} animate={inView ? { opacity: 1, x: 0 } : {}} transition={{ duration: 0.6 }}>
+          <div className="w-6 h-px bg-accent" />
+          <span className="section-label">Recognition</span>
+          <span className="section-label text-white/20">— 05</span>
         </motion.div>
 
-        <div className="lg:col-span-8 ach-grid flex flex-col gap-5">
-          {achievements.map((ach, i) => (
-            <SpotlightCard key={ach.id} className="ach-card opacity-0 glass rounded-2xl card-glow group">
-              <div className="p-6 lg:p-8">
-                <div className="flex flex-wrap items-start justify-between gap-4 mb-3">
-                  <div className="flex items-start gap-4">
-                    <span className="text-accent/40 text-sm font-mono tabular-nums pt-0.5">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <h3 className="text-white font-semibold text-base leading-snug">{ach.title}</h3>
-                  </div>
-                  <span className="text-secondary text-xs font-mono border border-white/10 rounded-full px-3 py-1 shrink-0">
-                    {ach.year}
-                  </span>
-                </div>
-                <div className="pl-8">
-                  <p className="text-accent/70 text-xs tracking-wide uppercase mb-2 font-semibold">{ach.context}</p>
-                  <p className="text-secondary text-sm leading-relaxed">{ach.description}</p>
-                </div>
-              </div>
-            </SpotlightCard>
-          ))}
-        </div>
+        <motion.h2 className="text-headline text-white mb-10 max-w-4xl"
+          initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.8 }}>
+          Earned <span className="text-secondary">through</span> execution.
+        </motion.h2>
+      </div>
+
+      <div className="w-full">
+        <Carousel items={cards} />
       </div>
     </section>
   );
 }
+
+const DummyContent = ({ text }: { text: string }) => {
+  return (
+    <div className="bg-[#12121A] p-8 md:p-14 rounded-3xl mb-4 border border-white/5">
+      <p className="text-neutral-400 text-base md:text-xl font-sans max-w-3xl mx-auto">
+        {text}
+      </p>
+    </div>
+  );
+};
+
+const data = [
+  {
+    category: "Hackathon Highlight",
+    title: "TechNova 2025 — 1st Place",
+    src: "/technova.jpg",
+    content: <DummyContent text="Competed against 50+ teams and won 1st Place in the App Development track at TechNova 2025 for building 'Roots' using React Native and MongoDB." />,
+  },
+  {
+    category: "Academic Excellence",
+    title: "Ranked 3rd in 1st Year",
+    src: "/felicitation 1st year.jpg",
+    content: <DummyContent text="Maintained outstanding academics since day one, ranking 3rd across the entire Computer Engineering department." />,
+  },
+  {
+    category: "Academic Excellence",
+    title: "Ranked 2nd in 2nd Year",
+    src: "/felicitation 2nd year.jpg",
+    content: <DummyContent text="Ranked 2nd out of 120+ students in the entire Computer Engineering Department along with a perfect 10 SGPA in Semester 1 & 4 with an overall CGPA of 9.85." />,
+  },
+  {
+    category: "Ideathon",
+    title: "Ecoclub Sustainability 3rd Position",
+    src: "/ecoclub ideathon.jpg",
+    content: <DummyContent text="Secured 3rd position pitching out-of-the-box sustainability solutions and creating a real-world impact plan focusing on green tech." />,
+  },
+  {
+    category: "Hackathon Track Record",
+    title: "SIH 2024 & SIH 2025",
+    src: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2670&auto=format&fit=crop",
+    content: <DummyContent text="Participated in consecutive editions of Smart India Hackathon (2024/2025), India's largest government-level hackathon for student innovators. Consistently executing and pitching innovative solutions in Sparkathon 2024 & 2025, Innovex E-Summit 2025, and Ideathon 2k25." />,
+  }
+];
