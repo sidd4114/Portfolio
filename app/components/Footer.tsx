@@ -4,7 +4,6 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { personal } from "@/app/lib/data";
 import MagneticButton from "@/app/components/MagneticButton";
-import ParticleField from "@/app/components/ParticleField";
 
 const links = [
   { label: "GitHub",   href: personal.github },
@@ -43,14 +42,20 @@ export default function Footer() {
   return (
     <footer ref={ref}
       className="relative border-t border-white/[0.04] px-6 lg:px-16 py-24 overflow-hidden">
-      {/* Particle layer */}
-      <div className="absolute inset-0 opacity-40">
-        <ParticleField />
-      </div>
-
-      {/* Bottom glow */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[700px] h-[180px] blur-3xl opacity-[0.14] pointer-events-none"
-        style={{ background: "radial-gradient(ellipse, #E02D3C 0%, transparent 70%)" }} />
+      {/* Gradient atmosphere — no particles */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse 80% 60% at 50% 120%, rgba(224,45,60,0.12) 0%, transparent 65%)",
+        }}
+      />
+      <motion.div
+        className="absolute bottom-0 left-1/4 w-96 h-96 rounded-full blur-3xl pointer-events-none"
+        style={{ background: "rgba(224,45,60,0.06)" }}
+        animate={{ scale: [1, 1.2, 1], opacity: [0.4, 0.7, 0.4] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+      />
 
       {/* Closing statement */}
       <motion.div className="relative z-10 max-w-7xl mx-auto mb-20"
@@ -63,7 +68,7 @@ export default function Footer() {
         </div>
 
         <h2 className="text-display text-white leading-none"
-          style={{ fontFamily: "'Google Sans', sans-serif" }}>
+          style={{ fontFamily: "var(--font-display)" }}>
           <span className="block">Let&apos;s build</span>
           <span className="block shimmer-text">something great.</span>
         </h2>
@@ -89,7 +94,7 @@ export default function Footer() {
         {/* Brand */}
         <div>
           <p className="text-white font-display font-bold text-lg tracking-widest uppercase"
-            style={{ fontFamily: "'Google Sans', sans-serif" }}>
+            style={{ fontFamily: "var(--font-display)" }}>
             Siddhen Pise
           </p>
           <p className="text-secondary/50 text-xs mt-1">{personal.role}</p>
@@ -134,7 +139,7 @@ export default function Footer() {
       {/* Watermark */}
       <div className="absolute bottom-0 left-0 right-0 text-center pointer-events-none select-none overflow-hidden" aria-hidden="true">
         <span className="text-[10rem] lg:text-[15rem] font-display font-bold opacity-[0.018] leading-none"
-          style={{ fontFamily: "'Google Sans', sans-serif" }}>SP</span>
+          style={{ fontFamily: "var(--font-display)" }}>SP</span>
       </div>
 
       {/* Copyright */}

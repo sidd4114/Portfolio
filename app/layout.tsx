@@ -26,15 +26,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* Google Sans + Open Sans via Google Fonts */}
+        {/* Orbitron (display/futuristic) + DM Sans (body) + Syne (accent) */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&family=Syne:wght@400;500;600;700;800&display=swap"
           rel="stylesheet"
         />
       </head>
-      <body>
+      <body suppressHydrationWarning>
         <CustomCursor />
         <ScrollProgress />
         <SmoothScrollProvider>

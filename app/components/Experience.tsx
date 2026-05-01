@@ -56,10 +56,11 @@ export default function Experience() {
         {/* Heading */}
         <motion.div className="lg:col-span-4"
           variants={staggerContainer} initial="hidden" animate={inView ? "visible" : "hidden"}>
-          <motion.h2 className="text-headline text-white sticky top-28" variants={fadeUpVariant}>
+          <motion.h2 className="text-headline text-white sticky top-28" variants={fadeUpVariant}
+            style={{ fontFamily: "var(--font-display)" }}>
             Where I&apos;ve<br />
-            <span className="text-secondary">built &</span><br />
-            <span className="text-secondary">shipped.</span>
+            <span style={{color:"rgba(255,255,255,0.45)"}}>built &amp; </span><br />
+            <span style={{color:"rgba(255,255,255,0.45)"}}>shipped.</span>
           </motion.h2>
         </motion.div>
 
@@ -88,7 +89,8 @@ export default function Experience() {
                     {/* Header */}
                     <div className="flex flex-wrap items-start justify-between gap-4 mb-5">
                       <div>
-                        <h3 className="text-white font-semibold text-lg">{exp.role}</h3>
+                        <h3 className="text-white font-semibold text-lg"
+                          style={{ fontFamily: "var(--font-accent)" }}>{exp.role}</h3>
                         <p className="text-accent text-sm mt-0.5 font-medium">{exp.company}</p>
                         <p className="text-secondary/60 text-xs mt-0.5">{exp.companyType}</p>
                       </div>

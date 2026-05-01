@@ -54,8 +54,8 @@ export default function Skills() {
         <motion.div className="lg:col-span-4"
           variants={staggerContainer} initial="hidden" animate={inView ? "visible" : "hidden"}>
           <motion.h2 className="text-headline text-white sticky top-28" variants={fadeUpVariant}
-            style={{ fontFamily: "'Google Sans', sans-serif" }}>
-            Tools of<br /><span className="text-secondary">the craft.</span>
+            style={{ fontFamily: "var(--font-display)" }}>
+            Tools of<br /><span style={{color:"rgba(255,255,255,0.45)"}}>the craft.</span>
           </motion.h2>
           <motion.p variants={fadeUpVariant}
             className="text-secondary text-sm leading-relaxed mt-6">
@@ -65,7 +65,7 @@ export default function Skills() {
           {/* Visual skill count */}
           <motion.div variants={fadeUpVariant} className="mt-10 glass rounded-xl p-5">
             <p className="text-4xl font-display font-bold text-white"
-              style={{ fontFamily: "'Google Sans', sans-serif" }}>
+              style={{ fontFamily: "var(--font-display)" }}>
               {skills.reduce((acc, g) => acc + g.items.length, 0)}+
             </p>
             <p className="text-secondary text-xs tracking-widest uppercase mt-1">Technologies</p>
@@ -86,7 +86,7 @@ export default function Skills() {
                   {GROUP_ICONS[group.group] ?? "·"}
                 </span>
                 <p className="text-xs font-semibold tracking-[0.22em] uppercase text-accent/80"
-                  style={{ fontFamily: "'Open Sans', sans-serif" }}>{group.group}</p>
+                  style={{ fontFamily: "var(--font-body)" }}>{group.group}</p>
                 <span className="text-secondary/20 text-xs">({group.items.length})</span>
               </div>
 

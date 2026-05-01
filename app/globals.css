@@ -2,24 +2,37 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ─── Google Sans + Open Sans are loaded via <link> in layout.tsx ─── */
+/* ─── Fonts: Orbitron · DM Sans · Syne ──────────────────────── */
 
 :root {
-  --accent:       #E02D3C;
-  --accent-dim:   #B91C2C;
-  --accent-glow:  rgba(224, 45, 60, 0.3);
-  --bg:           #0B0B0E;
-  --font-display: 'Google Sans', 'Open Sans', sans-serif;
-  --font-body:    'Open Sans', 'Google Sans', sans-serif;
+  --accent:        #E02D3C;
+  --accent-dim:    #B91C2C;
+  --accent-glow:   rgba(224, 45, 60, 0.35);
+  --accent-holo:   rgba(224, 45, 60, 0.15);
+  --bg:            #070709;
+  --bg-surface:    #0D0D12;
+  --bg-raised:     #12121A;
+  --glass-bg:      rgba(255,255,255,0.028);
+  --glass-border:  rgba(255,255,255,0.065);
+  --glass-red-bg:  rgba(224,45,60,0.045);
+  --glass-red-bd:  rgba(224,45,60,0.16);
+  --secondary:     rgba(255,255,255,0.45);
+  --font-display:  'Orbitron', monospace;
+  --font-body:     'DM Sans', sans-serif;
+  --font-accent:   'Syne', sans-serif;
 }
 
-/* ─── Reset ──────────────────────────────────────────────────── */
+/* ─── Reset ───────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { scroll-behavior: auto; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+html {
+  scroll-behavior: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
 body {
-  background-color: #0B0B0E;
+  background-color: var(--bg);
   color: #FFFFFF;
   font-family: var(--font-body);
   overflow-x: hidden;
@@ -32,7 +45,7 @@ body::before {
   inset: 0;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-size: 200px 200px;
-  opacity: 0.035;
+  opacity: 0.04;
   pointer-events: none;
   z-index: 9999;
   mix-blend-mode: overlay;
@@ -61,14 +74,13 @@ body::before {
   body { cursor: auto; }
   .cursor, .cursor-follower { display: none; }
 }
-
 @media (hover: hover) and (pointer: fine) {
   body { cursor: none; }
 }
 
 /* ─── Scrollbar ─────────────────────────────────────────────── */
 ::-webkit-scrollbar { width: 3px; }
-::-webkit-scrollbar-track { background: #0B0B0E; }
+::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: rgba(224,45,60,0.4); border-radius: 2px; }
 ::selection { background: rgba(224,45,60,0.25); color: #fff; }
 
@@ -76,7 +88,7 @@ body::before {
 .nav-blur {
   backdrop-filter: blur(24px) saturate(180%);
   -webkit-backdrop-filter: blur(24px) saturate(180%);
-  background: rgba(11,11,14,0.88);
+  background: rgba(7,7,9,0.9);
   border-bottom: 1px solid rgba(255,255,255,0.04);
 }
 
@@ -90,29 +102,29 @@ body::before {
 /* ─── Typography ─────────────────────────────────────────────── */
 .font-display { font-family: var(--font-display); }
 .font-body    { font-family: var(--font-body); }
+.font-accent  { font-family: var(--font-accent); }
 
 h1, h2, h3, h4, h5, h6 { font-family: var(--font-display); }
 
 .text-hero {
-  font-size: clamp(3.5rem, 14vw, 16rem);
+  font-size: clamp(3rem, 12vw, 14rem);
   line-height: 0.88;
   font-family: var(--font-display);
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  font-weight: 900;
+  letter-spacing: -0.01em;
 }
 .text-display {
-  font-size: clamp(2.5rem, 5vw, 6.5rem);
+  font-size: clamp(2rem, 4.5vw, 5.5rem);
   line-height: 0.95;
   font-family: var(--font-display);
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  font-weight: 800;
+  letter-spacing: -0.01em;
 }
 .text-headline {
-  font-size: clamp(1.8rem, 3vw, 3.5rem);
+  font-size: clamp(1.5rem, 2.5vw, 3rem);
   line-height: 1.1;
-  font-family: var(--font-display);
-  font-weight: 600;
-  letter-spacing: -0.01em;
+  font-family: var(--font-accent);
+  font-weight: 700;
 }
 
 /* ─── Section label ─────────────────────────────────────────── */
@@ -127,22 +139,105 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-display); }
 
 /* ─── Glass ──────────────────────────────────────────────────── */
 .glass {
-  background: rgba(255,255,255,0.035);
-  border: 1px solid rgba(255,255,255,0.07);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
 }
 .glass-red {
-  background: rgba(224,45,60,0.05);
-  border: 1px solid rgba(224,45,60,0.18);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background: var(--glass-red-bg);
+  border: 1px solid var(--glass-red-bd);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+}
+.glass-deep {
+  background: rgba(13,13,18,0.85);
+  border: 1px solid rgba(255,255,255,0.06);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+}
+
+/* ─── Skeuomorphic photo frame ───────────────────────────────── */
+.photo-frame {
+  position: relative;
+  border-radius: 24px;
+  /* Outer bevel — raised surface illusion */
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.08),
+    0 0 0 4px rgba(13,13,18,0.9),
+    0 0 0 5px rgba(255,255,255,0.05),
+    0 20px 60px rgba(0,0,0,0.8),
+    0 4px 20px rgba(0,0,0,0.6),
+    inset 0 1px 0 rgba(255,255,255,0.12),
+    inset 0 -1px 0 rgba(0,0,0,0.5);
+  overflow: hidden;
+}
+.photo-frame::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgba(255,255,255,0.06) 0%,
+    transparent 40%,
+    transparent 60%,
+    rgba(0,0,0,0.3) 100%
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+.photo-frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1px solid transparent;
+  background: linear-gradient(135deg, rgba(255,255,255,0.14) 0%, transparent 45%, rgba(224,45,60,0.2) 100%) border-box;
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* ─── Holographic border ─────────────────────────────────────── */
+@property --holo-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0turn;
+}
+@keyframes holo-rotate {
+  to { --holo-angle: 1turn; }
+}
+.holo-border {
+  position: relative;
+  border-radius: 28px;
+  padding: 3px;
+  background: conic-gradient(
+    from var(--holo-angle),
+    #E02D3C 0%,
+    rgba(224,45,60,0.3) 20%,
+    rgba(255,255,255,0.08) 40%,
+    rgba(224,45,60,0.15) 60%,
+    rgba(255,100,70,0.6) 80%,
+    #E02D3C 100%
+  );
+  animation: holo-rotate 4s linear infinite;
+}
+.holo-border-inner {
+  border-radius: 26px;
+  overflow: hidden;
+  background: var(--bg-surface);
+  width: 100%;
+  height: 100%;
 }
 
 /* ─── Spotlight (tracks mouse) ───────────────────────────────── */
 .spotlight {
   position: absolute; inset: 0;
-  background: radial-gradient(500px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(224,45,60,0.09), transparent 42%);
+  background: radial-gradient(500px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(224,45,60,0.08), transparent 42%);
   pointer-events: none;
 }
 
@@ -151,7 +246,7 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-display); }
 .card-glow::before {
   content: ''; position: absolute; inset: -1px;
   border-radius: inherit; padding: 1px;
-  background: linear-gradient(135deg, rgba(224,45,60,0.45), transparent 50%, rgba(224,45,60,0.2));
+  background: linear-gradient(135deg, rgba(224,45,60,0.5), transparent 50%, rgba(224,45,60,0.2));
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor; mask-composite: exclude;
@@ -162,8 +257,8 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-display); }
 /* ─── Animated grid bg ───────────────────────────────────────── */
 .animated-grid {
   background-image:
-    linear-gradient(rgba(224,45,60,0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(224,45,60,0.06) 1px, transparent 1px);
+    linear-gradient(rgba(224,45,60,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(224,45,60,0.05) 1px, transparent 1px);
   background-size: 60px 60px;
 }
 
@@ -172,8 +267,10 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-display); }
   display: inline-flex; align-items: center;
   padding: .3rem .85rem; border-radius: 100px;
   font-size: .8125rem; font-weight: 500;
-  color: #A1A1AA; border: 1px solid rgba(255,255,255,0.09);
-  background: rgba(255,255,255,0.02); font-family: var(--font-body);
+  color: rgba(255,255,255,0.5);
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.025);
+  font-family: var(--font-body);
   transition: border-color .3s, color .3s, background .3s, box-shadow .3s;
   white-space: nowrap;
 }
@@ -195,17 +292,19 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-display); }
 .btn-red {
   position: relative; overflow: hidden;
   background: var(--accent); color: #fff; border-radius: 100px;
-  font-weight: 600; font-size: .875rem;
+  font-weight: 600; font-size: .8125rem;
   font-family: var(--font-display);
+  letter-spacing: 0.05em;
   transition: transform .3s, box-shadow .3s;
 }
-.btn-red:hover { transform: scale(1.03); box-shadow: 0 0 32px rgba(224,45,60,0.55); }
+.btn-red:hover { transform: scale(1.03); box-shadow: 0 0 36px rgba(224,45,60,0.6); }
 
 .btn-outline {
-  position: relative; border: 1px solid rgba(255,255,255,0.18);
+  position: relative; border: 1px solid rgba(255,255,255,0.14);
   border-radius: 100px; color: #fff;
-  font-size: .875rem; font-weight: 500;
+  font-size: .8125rem; font-weight: 500;
   font-family: var(--font-display);
+  letter-spacing: 0.05em;
   transition: border-color .3s, background .3s, box-shadow .3s;
 }
 .btn-outline:hover {
@@ -225,9 +324,9 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-display); }
 .badge-shipped {
   display: inline-flex; align-items: center; gap: .35rem;
   padding: .2rem .75rem; border-radius: 100px;
-  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.09);
   font-size: .6875rem; font-weight: 600; letter-spacing: .1em;
-  color: #A1A1AA; text-transform: uppercase;
+  color: rgba(255,255,255,0.45); text-transform: uppercase;
   font-family: var(--font-body);
 }
 
@@ -258,24 +357,26 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-display); }
   animation: shimmer 4s linear infinite;
 }
 
-/* ─── Draggable card stack ───────────────────────────────────── */
-.draggable-stack { position: relative; width: 320px; height: 420px; }
+/* ─── Stat number glow ───────────────────────────────────────── */
+.stat-glow {
+  text-shadow: 0 0 20px rgba(224,45,60,0.5), 0 0 40px rgba(224,45,60,0.3);
+}
 
 /* ─── Moving border ──────────────────────────────────────────── */
-@keyframes border-rotate {
-  from { --border-angle: 0turn; }
-  to   { --border-angle: 1turn; }
-}
 @property --border-angle {
   syntax: '<angle>';
   inherits: false;
   initial-value: 0turn;
 }
+@keyframes border-rotate {
+  from { --border-angle: 0turn; }
+  to   { --border-angle: 1turn; }
+}
 .moving-border {
-  border: 2px solid transparent;
-  border-radius: 16px;
+  border: 1.5px solid transparent;
+  border-radius: 100px;
   background:
-    linear-gradient(#111118, #111118) padding-box,
+    linear-gradient(var(--bg-raised), var(--bg-raised)) padding-box,
     conic-gradient(from var(--border-angle), transparent 75%, #E02D3C 100%) border-box;
   animation: border-rotate 4s linear infinite;
 }
@@ -283,7 +384,7 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-display); }
 /* ─── Glow pulse ─────────────────────────────────────────────── */
 @keyframes glow-pulse {
   0%, 100% { box-shadow: 0 0 20px rgba(224,45,60,0.3); }
-  50%       { box-shadow: 0 0 45px rgba(224,45,60,0.6); }
+  50%       { box-shadow: 0 0 50px rgba(224,45,60,0.65); }
 }
 .glow-pulse { animation: glow-pulse 3s ease-in-out infinite; }
 
@@ -304,8 +405,8 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-display); }
 
 /* ─── Grid line fade ─────────────────────────────────────────── */
 @keyframes grid-fade {
-  0%, 100% { opacity: 0.04; }
-  50%       { opacity: 0.09; }
+  0%, 100% { opacity: 0.03; }
+  50%       { opacity: 0.07; }
 }
 .grid-fade { animation: grid-fade 5s ease-in-out infinite; }
 
@@ -313,4 +414,74 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-display); }
 @keyframes particle {
   0%   { transform: translateY(0) scale(1); opacity: 0.7; }
   100% { transform: translateY(-120px) scale(0); opacity: 0; }
+}
+
+/* ─── Draggable card stack ───────────────────────────────────── */
+.draggable-stack { position: relative; width: 340px; height: 420px; }
+
+/* ─── Photo overlay gradient ─────────────────────────────────── */
+.photo-overlay {
+  background: linear-gradient(
+    to bottom,
+    transparent 40%,
+    rgba(7,7,9,0.6) 70%,
+    rgba(7,7,9,0.95) 100%
+  );
+}
+
+/* ─── Gradient mesh background ───────────────────────────────── */
+.mesh-bg {
+  background:
+    radial-gradient(ellipse 80% 60% at 10% 80%, rgba(224,45,60,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 90% 20%, rgba(224,45,60,0.04) 0%, transparent 55%),
+    var(--bg);
+}
+
+/* ─── Data line decoration ───────────────────────────────────── */
+@keyframes data-flow {
+  0%   { stroke-dashoffset: 1000; }
+  100% { stroke-dashoffset: 0; }
+}
+.data-line {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: data-flow 3s ease forwards;
+}
+
+/* ─── Container scroll animation ────────────────────────────── */
+.container-scroll-header {
+  transform-origin: center top;
+}
+.project-card-enter {
+  transform-style: preserve-3d;
+  perspective: 1200px;
+}
+
+/* ─── Neon text ──────────────────────────────────────────────── */
+.neon-text {
+  color: var(--accent);
+  text-shadow:
+    0 0 7px rgba(224,45,60,0.8),
+    0 0 20px rgba(224,45,60,0.5),
+    0 0 40px rgba(224,45,60,0.3);
+}
+
+/* ─── About stat counter ─────────────────────────────────────── */
+.about-stat-line {
+  height: 1px;
+  background: linear-gradient(90deg, var(--accent), transparent);
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 0.8s cubic-bezier(0.76, 0, 0.24, 1);
+}
+.about-stat-line.visible { transform: scaleX(1); }
+
+/* ─── Skeuo inner shadow surface ─────────────────────────────── */
+.skeuo-surface {
+  background: linear-gradient(145deg, var(--bg-raised) 0%, #0A0A10 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.08),
+    inset 0 -1px 0 rgba(0,0,0,0.5),
+    inset 2px 0 4px rgba(0,0,0,0.3),
+    0 1px 3px rgba(0,0,0,0.4);
 }

@@ -69,7 +69,24 @@ function CardItem({
       whileDrag={{ scale: 1.03 }}
     >
       {/* Card face */}
-      <div className="glass-red w-full h-full p-7 flex flex-col justify-between relative overflow-hidden">
+      <div
+        className="w-full h-full flex flex-col justify-between relative overflow-hidden"
+        style={{
+          background:
+            index === 0
+              ? "rgba(224,45,60,0.05)"
+              : index === 1
+              ? "rgba(14,14,20,0.97)"
+              : "rgba(12,12,18,0.98)",
+          border:
+            index === 0
+              ? "1px solid rgba(224,45,60,0.18)"
+              : "1px solid rgba(255,255,255,0.05)",
+          borderRadius: "inherit",
+          backdropFilter: index === 0 ? "blur(18px)" : "none",
+          padding: "1.75rem",
+        }}
+      >
         {/* Shimmer on hover */}
         <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700"
           style={{ background: "linear-gradient(135deg, rgba(224,45,60,0.06) 0%, transparent 50%)" }} />
@@ -92,8 +109,8 @@ function CardItem({
           </div>
 
           <h3
-            className="text-white text-2xl font-display font-bold leading-tight mt-2"
-            style={{ fontFamily: "'Google Sans', sans-serif" }}
+            className="text-white text-2xl font-bold leading-tight mt-2"
+            style={{ fontFamily: "var(--font-display)" }}
           >
             {card.title}
           </h3>
@@ -109,7 +126,8 @@ function CardItem({
 
         {/* Bottom − drag hint only on top card */}
         {index === 0 && (
-          <p className="mt-5 text-secondary/40 text-xs tracking-widest uppercase font-body">
+          <p className="mt-5 text-xs tracking-widest uppercase"
+            style={{ color: "rgba(255,255,255,0.3)", fontFamily: "var(--font-body)" }}>
             Drag to dismiss →
           </p>
         )}

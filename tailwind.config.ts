@@ -7,21 +7,23 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        bg:              "#0B0B0E",
-        "bg-soft":       "#111118",
+        bg:              "#070709",
+        "bg-soft":       "#0D0D12",
+        "bg-raised":     "#12121A",
         primary:         "#FFFFFF",
-        secondary:       "#A1A1AA",
+        secondary:       "rgba(255,255,255,0.45)",
         accent:          "#E02D3C",
         "accent-dim":    "#B91C2C",
         "accent-muted":  "rgba(224,45,60,0.12)",
-        "accent-glow":   "rgba(224,45,60,0.28)",
-        glass:           "rgba(255,255,255,0.04)",
-        "glass-border":  "rgba(255,255,255,0.08)",
+        "accent-glow":   "rgba(224,45,60,0.35)",
+        glass:           "rgba(255,255,255,0.028)",
+        "glass-border":  "rgba(255,255,255,0.065)",
       },
       fontFamily: {
-        display: ["'Google Sans'", "'Open Sans'", "sans-serif"],
-        body:    ["'Open Sans'",   "'Google Sans'", "sans-serif"],
-        sans:    ["'Open Sans'",   "'Google Sans'", "sans-serif"],
+        display: ["'Orbitron'", "monospace"],
+        accent:  ["'Syne'",    "sans-serif"],
+        body:    ["'DM Sans'", "sans-serif"],
+        sans:    ["'DM Sans'", "sans-serif"],
         mono:    ["'JetBrains Mono'", "monospace"],
       },
       animation: {

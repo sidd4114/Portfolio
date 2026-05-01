@@ -39,8 +39,8 @@ export default function NavBar() {
           {/* Logo */}
           <motion.a
             href="#"
-            className="relative font-display font-black text-white text-sm tracking-[0.2em] uppercase"
-            style={{ fontFamily: "Satoshi, sans-serif", fontWeight: 900 }}
+            className="relative font-display font-black text-white text-sm tracking-[0.25em] uppercase"
+            style={{ fontFamily: "var(--font-display)", fontWeight: 900 }}
             whileHover={{ scale: 1.05 }}
             aria-label="Back to top"
           >
@@ -96,7 +96,7 @@ export default function NavBar() {
             {navLinks.map((l, i) => (
               <motion.button key={l.href} onClick={() => go(l.href)}
                 className="text-5xl font-display font-black text-white tracking-tight"
-                style={{ fontFamily: "Satoshi, sans-serif" }}
+                style={{ fontFamily: "var(--font-display)" }}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.07 + 0.2 }}>

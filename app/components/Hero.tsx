@@ -5,7 +5,6 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { gsap } from "gsap";
 import AnimatedBeam from "@/app/components/AnimatedBeam";
 import TextScramble from "@/app/components/TextScramble";
-import ParticleField from "@/app/components/ParticleField";
 import Typewriter from "@/app/components/Typewriter";
 import MagneticButton from "@/app/components/MagneticButton";
 import { personal } from "@/app/lib/data";
@@ -44,9 +43,26 @@ export default function Hero() {
     <section ref={sectionRef} id="hero"
       className="relative w-full min-h-screen overflow-hidden bg-bg flex flex-col justify-end">
 
-      {/* ── Layers ─────────────────────────────────────────────── */}
+      {/* ── Layers ────────────────────────────────────────── */}
       <AnimatedBeam />
-      <ParticleField />
+
+      {/* Mesh gradient overlay — diagonal conic sweep */}
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true"
+        style={{
+          background: "conic-gradient(from 225deg at 20% 90%, rgba(224,45,60,0.07) 0deg, transparent 60deg, transparent 300deg, rgba(224,45,60,0.04) 360deg)",
+        }}
+      />
+
+      {/* Horizontal light streak */}
+      <motion.div
+        className="absolute pointer-events-none"
+        style={{
+          top: "35%", left: 0, right: 0, height: "1px",
+          background: "linear-gradient(90deg, transparent 0%, rgba(224,45,60,0.25) 30%, rgba(224,45,60,0.5) 50%, rgba(224,45,60,0.25) 70%, transparent 100%)",
+        }}
+        animate={{ opacity: [0.3, 0.7, 0.3], scaleX: [0.8, 1.1, 0.8] }}
+        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+      />
 
       {/* Dot-grid backdrop */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
@@ -89,14 +105,14 @@ export default function Hero() {
         <h1 className="leading-none select-none" aria-label={personal.name}>
           <div className="overflow-hidden">
             <div className="hl1 text-hero text-white"
-              style={{ fontFamily: "'Google Sans', sans-serif", fontWeight: 700 }}>
+              style={{ fontFamily: "var(--font-display)", fontWeight: 900 }}>
               SIDDHEN
             </div>
           </div>
           <div className="overflow-hidden">
             <div className="hl2 text-hero"
               style={{
-                fontFamily: "'Google Sans', sans-serif", fontWeight: 700,
+                fontFamily: "var(--font-display)", fontWeight: 900,
                 WebkitTextStroke: "1.5px rgba(255,255,255,0.18)",
                 color: "transparent",
               }}>
@@ -116,9 +132,9 @@ export default function Hero() {
           {stats.map((s) => (
             <div key={s.label} className="hero-stat opacity-0">
               <p className="text-3xl font-display font-bold text-white"
-                style={{ fontFamily: "'Google Sans', sans-serif" }}>{s.val}</p>
+                style={{ fontFamily: "var(--font-display)" }}>{s.val}</p>
               <p className="text-secondary text-xs tracking-widest uppercase mt-0.5"
-                style={{ fontFamily: "'Open Sans', sans-serif" }}>{s.label}</p>
+                style={{ fontFamily: "var(--font-body)" }}>{s.label}</p>
             </div>
           ))}
         </div>
